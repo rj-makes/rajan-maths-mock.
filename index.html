@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GCSE Maths Foundation | Paper 2 Mock</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--pale:#eff6ff;--ink:#172033;--muted:#64748b;--line:#dbe3ef;--green:#15803d;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:linear-gradient(120deg,#172554,#1d4ed8);color:white;padding:26px 18px}
+.wrap{max-width:850px;margin:auto;padding:0 16px}h1{font-size:clamp(24px,5vw,34px);margin:0 0 5px}header p{margin:0;color:#dbeafe}
+main{padding:22px 0 50px}.panel,.question{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 5px 18px #0f172a0a}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.stat{background:#ffffff1c;padding:7px 12px;border-radius:9px;font-size:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.muted{color:var(--muted);font-size:14px}
+.progress{height:8px;background:#e2e8f0;border-radius:20px;overflow:hidden;margin:12px 0}.bar{height:100%;width:0;background:#60a5fa;transition:width .2s}
+.qtop{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}.qtitle{font-size:20px;font-weight:700;margin:12px 0}
+input,select{font:inherit;padding:12px;border:1.5px solid #cbd5e1;border-radius:10px;width:100%;max-width:340px;background:white}
+.options{display:grid;gap:9px;margin:15px 0}.option{border:1.5px solid var(--line);border-radius:10px;padding:12px;cursor:pointer}.option:has(input:checked){border-color:var(--blue);background:var(--pale)}.option input{width:auto;margin-right:8px}
+button{font:inherit;font-weight:650;border:0;border-radius:10px;padding:11px 17px;cursor:pointer;background:var(--blue);color:white}
+button.secondary{background:#e2e8f0;color:#172033}button:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.feedback{margin-top:16px;padding:13px;border-radius:10px;display:none}.feedback.good{display:block;background:#f0fdf4;color:#166534}.feedback.bad{display:block;background:#fef2f2;color:#991b1b}
+.hidden{display:none!important}.review-item{padding:14px 0;border-bottom:1px solid var(--line)}.review-item:last-child{border:0}.tag{font-size:12px;font-weight:700;padding:3px 8px;border-radius:20px;background:#e2e8f0}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}
+</style></head>
+<body>
+<header><div class="wrap"><h1>GCSE Maths Foundation</h1><p>Paper 2 mock exam · Calculator allowed · Practice edition</p><p style="margin-top:10px;color:#fff;font-weight:700">Made by Rajan · I love you now and forever. Good luck ❤️</p>
+<div class="stats"><span class="stat">20 questions</span><span class="stat">40 marks</span><span class="stat">45 minute timer</span></div></div></header>
+<main class="wrap">
+<section id="intro" class="panel">
+<h2>Ready to begin?</h2>
+<p>This is an original practice paper covering common GCSE Foundation topics. It is not an official exam paper. Use a calculator and rough paper. Enter your answer, then press <b>Check answer</b> to see whether it is right and read the working.</p>
+<p class="muted">For the best mock-exam experience, try each question before checking. Your score updates as you go.</p>
+<button onclick="start()">Start mock exam</button>
+</section>
+<section id="exam" class="hidden">
+<div class="panel">
+<div class="row"><b id="counter">Question 1 of 20</b><b id="timer">45:00</b></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="row muted"><span id="marks">0 / 40 marks</span><span>Calculator allowed</span></div>
+</div>
+<div class="question">
+<div class="qtop"><span id="topic">Number</span><span id="qmarks">2 marks</span></div>
+<div class="qtitle" id="prompt"></div>
+<div id="answerArea"></div>
+<div id="feedback" class="feedback"></div>
+<div class="actions">
+<button id="checkBtn" onclick="check()">Check answer</button>
+<button id="nextBtn" class="secondary" onclick="next()" disabled>Next question →</button>
+</div></div>
+</section>
+<section id="results" class="panel hidden">
+<h2>Mock exam complete</h2><div style="font-size:38px;font-weight:800" id="finalScore"></div>
+<p id="gradeText"></p><p id="timeTaken" class="muted"></p>
+<div class="actions"><button onclick="showReview()">Review answers & worked solutions</button><button class="secondary" onclick="restart()">Try again</button></div>
+<div id="review" class="hidden"></div>
+</section>
+</main><footer>Original GCSE-style practice questions · Foundation level<br><b>Made by Rajan · I love you now and forever. Good luck ❤️</b></footer>
+<script>
+const qs=[
+{t:"Number",m:2,q:"Work out 348 + 576.",a:"924",w:"348 + 576 = 924. Add the ones, tens and hundreds, carrying where needed."},
+{t:"Number",m:2,q:"Work out 15% of £80.",a:"12",w:"10% of £80 is £8 and 5% is £4. Total = £12."},
+{t:"Fractions",m:2,q:"Write 0.375 as a fraction in its simplest form.",a:"3/8",w:"0.375 = 375/1000. Divide top and bottom by 125 to get 3/8."},
+{t:"Ratio",m:2,q:"Share £42 in the ratio 4 : 3. How much is the larger share?",a:"24",w:"There are 4 + 3 = 7 parts. £42 ÷ 7 = £6 per part. Larger share = 4 × £6 = £24."},
+{t:"Algebra",m:2,q:"Solve 3x + 5 = 20. What is x?",a:"5",w:"Subtract 5: 3x = 15. Divide by 3: x = 5."},
+{t:"Percentages",m:2,q:"A jacket costs £60. It is reduced by 20%. What is the sale price in pounds?",a:"48",w:"20% of £60 = £12. £60 − £12 = £48."},
+{t:"Area",m:2,q:"A rectangle is 8 cm long and 5 cm wide. Find its area in cm².",a:"40",w:"Area = length × width = 8 × 5 = 40 cm²."},
+{t:"Averages",m:2,q:"Find the mean of 4, 7, 8, 9 and 12.",a:"8",w:"Add the values: 40. Divide by 5 values: mean = 8."},
+{t:"Probability",m:2,q:"A fair six-sided dice is rolled. What is the probability of getting an even number? Give your answer as a fraction.",a:"1/2",w:"Even outcomes are 2, 4 and 6. That is 3 out of 6, so 3/6 = 1/2."},
+{t:"Money",m:2,q:"A taxi charges £3.20 plus £1.50 per mile. How much is a 6-mile journey?",a:"12.2",w:"6 × £1.50 = £9. Add the £3.20 fixed charge: £12.20."},
+{t:"Angles",m:2,q:"Two angles on a straight line are 127° and x°. Find x.",a:"53",w:"Angles on a straight line add to 180°. x = 180 − 127 = 53°."},
+{t:"Coordinates",m:2,q:"Point A is (−3, 4). It is translated 5 units right and 2 units down. What is the new x-coordinate?",a:"2",w:"Moving 5 right adds 5 to x: −3 + 5 = 2. (The new point is (2, 2).)"},
+{t:"Units",m:2,q:"Convert 2.4 kilometres into metres.",a:"2400",w:"1 kilometre = 1000 metres. 2.4 × 1000 = 2400 metres."},
+{t:"Sequences",m:2,q:"Find the next term: 5, 9, 13, 17, ...",a:"21",w:"The sequence increases by 4 each time. 17 + 4 = 21."},
+{t:"Perimeter",m:2,q:"A square has sides of 7.5 cm. Find its perimeter in cm.",a:"30",w:"Perimeter of a square = 4 × side = 4 × 7.5 = 30 cm."},
+{t:"Speed",m:2,q:"A car travels 150 km in 3 hours. Find its average speed in km/h.",a:"50",w:"Speed = distance ÷ time = 150 ÷ 3 = 50 km/h."},
+{t:"Algebra",m:2,q:"Expand 4(2x + 3).",a:"8x+12",w:"Multiply each term inside the bracket by 4: 4 × 2x = 8x and 4 × 3 = 12."},
+{t:"Volume",m:2,q:"A cuboid measures 4 cm by 3 cm by 5 cm. Find its volume in cm³.",a:"60",w:"Volume = length × width × height = 4 × 3 × 5 = 60 cm³."},
+{t:"Scale",m:2,q:"On a map, 1 cm represents 5 km. Two towns are 7.2 cm apart on the map. What is the real distance in km?",a:"36",w:"Real distance = 7.2 × 5 = 36 km."},
+{t:"Rounding",m:2,q:"Round 38.746 to 1 decimal place.",a:"38.7",w:"Look at the second decimal digit (4). It is below 5, so 38.746 rounds to 38.7."}
+];
+let i=0,score=0,answers=[],checked=false,seconds=2700,tick=null,startedAt=0;
+const $=id=>document.getElementById(id);
+function start(){ $("intro").classList.add("hidden");$("exam").classList.remove("hidden");startedAt=Date.now();render();tick=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(tick);finish(true)}},1000); }
+function updateTimer(){let m=Math.floor(seconds/60),s=seconds%60;$("timer").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");if(seconds<300)$("timer").style.color="#fecaca";}
+function render(){let q=qs[i];checked=false;$("counter").textContent=`Question ${i+1} of ${qs.length}`;$("topic").textContent=q.t;$("qmarks").textContent=q.m+" marks";$("prompt").textContent=q.q;$("bar").style.width=(i/qs.length*100)+"%";$("marks").textContent=score+" / 40 marks";$("feedback").className="feedback";$("feedback").textContent="";$("checkBtn").disabled=false;$("nextBtn").disabled=true;$("nextBtn").textContent=i===qs.length-1?"Finish mock →":"Next question →";$("answerArea").innerHTML='<input id="answer" autocomplete="off" placeholder="Type your answer here" aria-label="Your answer"><p class="muted">For fractions, enter for example 3/8. For algebra, enter for example 8x+12.</p>';if(answers[i]?.value!==undefined)$("answer").value=answers[i].value;}
+function normal(s){return String(s).toLowerCase().replace(/[£,°²³\s]/g,"").replace(/\.0+$/,"").replace(/\*|×/g,"");}
+function check(){if(checked)return;let val=$("answer").value.trim();if(!val){$("answer").focus();return}let q=qs[i],ok=normal(val)===normal(q.a);answers[i]={value:val,ok};if(ok)score+=q.m;checked=true;$("feedback").className="feedback "+(ok?"good":"bad");$("feedback").innerHTML=(ok?"✓ Correct!":"✗ Not quite.")+" <b>"+(ok?"You earned "+q.m+" marks.":"Correct answer: "+q.a)+"</b><br>"+q.w;$("checkBtn").disabled=true;$("nextBtn").disabled=false;$("marks").textContent=score+" / 40 marks";}
+function next(){if(!checked)return;if(i===qs.length-1){finish(false);return}i++;render();}
+function finish(timeup){clearInterval(tick);$("exam").classList.add("hidden");$("results").classList.remove("hidden");$("finalScore").textContent=score+" / 40";let pct=score/40*100;$("gradeText").textContent=timeup?"Time is up. ":"Well done for completing the paper. "+(pct>=80?"Strong result.":pct>=60?"Good progress.":pct>=40?"Keep practising the topics you missed.":"Use the worked solutions to build confidence, then try again.");$("timeTaken").textContent="Time remaining: "+Math.floor(seconds/60)+"m "+(seconds%60)+"s";$("bar").style.width="100%";}
+function showReview(){$("review").classList.remove("hidden");$("review").innerHTML="<h3>Answer review</h3>"+qs.map((q,n)=>{let a=answers[n];return `<div class="review-item"><div class="row"><b>Q${n+1}. ${q.t}</b><span class="tag">${a?.ok?"Correct":"Review"}</span></div><p>${q.q}</p><p class="muted">Your answer: ${a?escapeHtml(a.value):"Not answered"} · Correct answer: <b>${q.a}</b></p><p>${q.w}</p></div>`}).join("");}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function restart(){i=0;score=0;answers=[];seconds=2700;$("results").classList.add("hidden");$("review").classList.add("hidden");$("timer").style.color="";$("exam").classList.remove("hidden");startedAt=Date.now();render();tick=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(tick);finish(true)}},1000);}
+</script></body></html>
